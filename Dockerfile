@@ -42,11 +42,8 @@ RUN sudo dpkg-reconfigure openssh-server
 
 EXPOSE 5432
 EXPOSE 22
-RUN mkdir -p /var/run/postgresql && chown -R postgres /var/run/postgresql
 
 VOLUME  ["/etc/postgresql", "/var/log/postgresql", "/var/lib/postgresql"]
-
-USER postgres
 
 CMD ["/usr/lib/postgresql/9.3/bin/postgres", "-D", "/var/lib/postgresql/9.3/main", "-c", "config_file=/etc/postgresql/9.3/main/postgresql.conf"]
 
