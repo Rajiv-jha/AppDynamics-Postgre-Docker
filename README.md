@@ -16,7 +16,7 @@ To use the docker images run :
 
 docker run -p 5432:5432 -p 2224:22 --name postgre -e POSTGRES_ROOT_PASSWORD=welcome1 -d  appdynamics/ecommerce-postgre
 
-Performing CURD in the Container 
+Performing CRUD in the Container 
 --------------------------------
 
 -Login into the container : docker exec -it postgre bash 
@@ -25,7 +25,7 @@ Performing CURD in the Container
 
 Now you can perform any operation here 
 
-Performing CURD through JDBC driver 
+Performing CRUD through JDBC driver 
 -----------------------------------
 
 
