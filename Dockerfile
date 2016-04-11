@@ -16,6 +16,7 @@ RUN echo 'root:welcome1' | chpasswd
 RUN sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 # SSH login fix. Otherwise user is kicked off after login
 RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
+RUN /etc/init.d/ssh start
 
 
 RUN sudo gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 94558F59
@@ -31,7 +32,6 @@ RUN /etc/init.d/postgresql start \
     && createdb -O pguser1 pgdb1
 
 USER root
-RUN /etc/init.d/ssh start
 RUN rm /etc/postgresql/9.3/main/pg_hba.conf
 ADD /pg_hba.conf /etc/postgresql/9.3/main/
 RUN chmod 777 /etc/postgresql/9.3/main/pg_hba.conf
