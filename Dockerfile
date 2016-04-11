@@ -31,12 +31,11 @@ RUN /etc/init.d/postgresql start \
     && createdb -O pguser1 pgdb1
 
 USER root
+RUN /etc/init.d/ssh start
 RUN rm /etc/postgresql/9.3/main/pg_hba.conf
 ADD /pg_hba.conf /etc/postgresql/9.3/main/
 RUN chmod 777 /etc/postgresql/9.3/main/pg_hba.conf
 RUN echo "listen_addresses='*'" >> /etc/postgresql/9.3/main/postgresql.conf
-RUN rm /etc/ssh/ssh_host*
-RUN sudo dpkg-reconfigure openssh-server
 
 EXPOSE 5432
 EXPOSE 22
